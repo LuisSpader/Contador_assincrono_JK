@@ -1,0 +1,81 @@
+m255
+K3
+13
+cModel Technology
+Z0 dC:\Users\luisa\Documents\Materias\UFSC\20201\Sistemas digitais - INE5406 - 05235A\LAB Sist digitais\Projects\contador_assincrono\simulation\qsim
+vcontador_assincrono_ffjk
+Z1 Il7Geo60m=OLoe7I<05foI1
+Z2 VZGa8n77bM6NI5bgV7AX;g3
+Z3 dC:\Users\luisa\Documents\Materias\UFSC\20201\Sistemas digitais - INE5406 - 05235A\LAB Sist digitais\Projects\contador_assincrono\simulation\qsim
+Z4 w1601555911
+Z5 8contador_assincrono.vo
+Z6 Fcontador_assincrono.vo
+L0 31
+Z7 OV;L;10.1d;51
+r1
+31
+Z8 !s90 -work|work|contador_assincrono.vo|
+Z9 o-work work -O0
+!i10b 1
+Z10 !s100 dVc7Pb<@VIWnhWNXQV;=:0
+!s85 0
+Z11 !s108 1601555912.209000
+Z12 !s107 contador_assincrono.vo|
+!s101 -O0
+vcontador_assincrono_ffjk_vlg_check_tst
+!i10b 1
+Z13 !s100 h1LP;JE3_;4:Ub=VnIR7n3
+Z14 I908d^N<dV0SQjE8PkgH@n0
+Z15 V5MfLoRDCoIZ0B5WM57V[i1
+R3
+Z16 w1601555910
+Z17 8contador_assincrono.vt
+Z18 Fcontador_assincrono.vt
+L0 61
+R7
+r1
+!s85 0
+31
+Z19 !s108 1601555912.332000
+Z20 !s107 contador_assincrono.vt|
+Z21 !s90 -work|work|contador_assincrono.vt|
+!s101 -O0
+R9
+vcontador_assincrono_ffjk_vlg_sample_tst
+!i10b 1
+Z22 !s100 JVE[Jj86<[nAT`A18mfZ@2
+Z23 IN8d>fcP9mZE8hnj<hianz1
+Z24 V94]=ecjRMX3:5@EYOodA71
+R3
+R16
+R17
+R18
+L0 29
+R7
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R9
+vcontador_assincrono_ffjk_vlg_vec_tst
+!i10b 1
+Z25 !s100 ?2ejPMf_L_X6dV8:3kfi90
+Z26 I<1O5]<3AbeCBacPaZ:JAM3
+Z27 V5AONiG?<g25IWC@nQC5b53
+R3
+R16
+R17
+R18
+Z28 L0 173
+R7
+r1
+!s85 0
+31
+R19
+R20
+R21
+!s101 -O0
+R9

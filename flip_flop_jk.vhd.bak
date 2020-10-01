@@ -1,0 +1,55 @@
+library ieee;
+use ieee.std_logic_1164.all;
+--use ieee.std_logic_unsigned.all; 
+use ieee.numeric_std.all;
+
+--ESSE E O QUE FUNCIONA!!
+
+entity flip_flop_jk is
+--generic(n: natural:= 4);
+	port(J, K: in std_logic;
+			clk: in std_logic;
+			Q, Q_not: out std_logic
+			);
+end flip_flop_jk;
+
+architecture comportamento of flip_flop_jk is
+signal sel: std_logic_vector(1 downto 0); 
+signal s0: std_logic; 
+
+begin	
+
+sel(0)<=  K;
+sel(1)<= J;
+
+clk_check : PROCESS  (clk, sel)
+BEGIN
+	IF clk'EVENT and clk = '1' THEN
+	--op_case : process (J,K, sel)
+    case sel is
+      when "00" =>
+		
+      when "01" => 
+			s0<='0';
+			--Q<=s0;
+			--Q_not<= s1;
+	  
+      when "10" =>
+			s0<='1';
+			--Q<=s0;
+			--Q_not<= s1;
+			
+      when "11" =>
+		  s0<=not(s0);
+		  --Q<=s0;
+		  --Q_not<= s1;
+		  
+    end case;
+   END IF;
+	
+Q<=s0;
+Q_not<= not(s0);
+END PROCESS;
+
+
+end architecture;

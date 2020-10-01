@@ -1,0 +1,111 @@
+library ieee;
+use ieee.std_logic_1164.all;
+--use ieee.std_logic_unsigned.all; 
+use ieee.numeric_std.all;
+
+entity contador_assincrono_jk is
+generic(n: natural:= 4);
+	port(A, B: in signed (n-1 downto 0); 
+			cin: in std_logic;
+			sel: in std_logic_vector(2 downto 0);-- para somar ou subtrair// 1= subtrair
+			S: out signed(n-1 downto 0);-- Saida pode ser negativa (signed)
+			neg,zero: out std_logic;
+			overflow_ula: out std_logic;
+			COUT: out std_logic
+			);
+end contador_assincrono_jk;
+
+architecture comportamento of contador_assincrono_jk is
+	signal b_sum_subtrator: signed(n-1 downto 0);
+	signal S_sum: signed(n-1 downto 0);
+	signal S_before: signed(n-1 downto 0);
+	constant zeros : signed(S'range) := (others => '0'); -- zeros(0) with len(S)
+	constant ones : signed(S'range) := (others => '1'); -- ones (1) with len(S)
+	
+	component somador_n
+	--generic(n: integer:= 2);
+		port(A, B: in signed(n-1 downto 0); 
+			cin: in std_logic;
+			S: out signed(n-1 downto 0);
+			overflow_sum: out std_logic;
+			COUT: out std_logic
+			);
+	end component;
+	
+begin	
+-- 000  | A+B
+-- 001  | A-B
+-- 010  | A or B
+-- 011  | A and B 
+-- 100  | not A
+-- 101  | 1 se A<B
+
+Sm_n: somador_n port map(A, b_sum_subtrator, cin, S_sum, overflow_ula, COUT); --a, b, cin, S,OVERFLOW, cout
+
+op_case : process (sel,A,B,S_before, S_sum, b_sum_subtrator)
+  begin
+    case sel is
+      when "000" =>-- 000  | A+B
+        b_sum_subtrator <= B;
+		  S_before<= S_sum;
+		  neg<=S_before(n-1);
+		  zero <='0';
+		  S<= S_before;
+		  
+      when "001" =>-- 001  | A-B
+        b_sum_subtrator <= ((not(B))+1);
+		  S_before<= S_sum;
+		  neg<=S_before(n-1);
+		  zero <='0';
+		  S<= S_before;
+		  
+      when "010" =>-- 010  | A or B 
+        b_sum_subtrator <= B;
+		  S_before<= (A or B);
+		  neg<=S_before(n-1);
+		  zero <='0';
+		  S<= S_before;
+		  
+      when "011" =>-- 011  | A and B 
+        b_sum_subtrator <= B;
+		  S_before<= (A and B);
+		  neg<=S_before(n-1);
+		  zero <='0';
+		  S<= S_before;
+		  
+      when "100" =>-- 100  | not A 
+        b_sum_subtrator <= B;
+		  S_before<= not(A);
+		  neg<=S_before(n-1);
+		  zero <='0';
+		  S<= S_before;
+		  
+      when "101" =>-- 101  | 1 if A<B, else 0
+        b_sum_subtrator <= B;
+		 -- process(A, b_sum_subtrator, S)
+       -- begin
+		  if (A<b_sum_subtrator)then 
+				S_before<=ones;
+				neg<=S_before(n-1);
+				zero <='0';
+				S<= S_before;
+
+		  else 
+				S_before<=zeros;
+				zero <='1';
+				neg<=S_before(n-1);
+				S<= S_before;
+		  end if;
+        --end process;
+		  
+      when others =>--??
+        b_sum_subtrator <= B;
+		  S_before<= zeros;
+		  zero <='1';
+		  S<= S_before;
+    end case;	
+     
+  end process;
+
+
+end architecture;

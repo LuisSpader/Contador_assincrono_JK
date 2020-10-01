@@ -1,0 +1,1 @@
+Este contador Generic não está funcionando

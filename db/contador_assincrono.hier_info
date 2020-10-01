@@ -1,0 +1,24 @@
+|contador_assincrono_ffjk
+J => flip_flop_jk:GENERIC_contador:0:ff_aux.J
+K => flip_flop_jk:GENERIC_contador:0:ff_aux.K
+clk => flip_flop_jk:GENERIC_contador:0:ff_aux.clk
+contagem[0] <= flip_flop_jk:GENERIC_contador:0:ff_aux.Q
+contagem[1] <= flip_flop_jk:GENERIC_contador:1:ff_aux.Q
+
+
+|contador_assincrono_ffjk|flip_flop_jk:\GENERIC_contador:0:ff_aux
+J => Mux0.IN3
+K => Mux0.IN4
+clk => s0.CLK
+Q <= s0.DB_MAX_OUTPUT_PORT_TYPE
+Q_not <= s0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|contador_assincrono_ffjk|flip_flop_jk:\GENERIC_contador:1:ff_aux
+J => Mux0.IN3
+K => Mux0.IN4
+clk => s0.CLK
+Q <= s0.DB_MAX_OUTPUT_PORT_TYPE
+Q_not <= s0.DB_MAX_OUTPUT_PORT_TYPE
+
+
